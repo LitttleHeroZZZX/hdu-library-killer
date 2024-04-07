@@ -57,7 +57,7 @@ class UserInterface:
                     print("登录成功")
                     self.killer.saveConfig()
                     self.th = Thread(target=self.killer.updateRooms)
-                    self.th.start()
+                    # self.th.start()
                     flag = True
                 else:
                     print("配置文件中账号密码错误，请重新输入")
@@ -213,8 +213,9 @@ class UserInterface:
             # if num < 1 or num > 4:
             #     raise Exception("人数不合法")
             num=1
+            self.th.start()
             if self.th.is_alive():
-                print("正在初始化楼层和座位信息（为避免频繁请求而导致封号，此过程可能需要几秒，请耐心等待）")
+                print("正在初始化楼层和座位信息（为避免频繁请求而导致封号，此过程可能需要十几秒，请耐心等待）")
                 for _ in "loading...":
                     print(_, end="", flush=True)
                     sleep(0.5 if self.th.is_alive() else 0.1)
